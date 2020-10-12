@@ -6,3 +6,21 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 echo 'Hello Blackjack';
+
+
+session_start();
+//session is started if you don't write this line can't use $_Session global variable
+
+function whatIsHappening()
+{
+    echo '<h2>$_GET</h2>';
+    var_dump($_GET);
+    echo '<h2>$_POST</h2>';
+    var_dump($_POST);
+    echo '<h2>$_COOKIE</h2>';
+    var_dump($_COOKIE);
+    echo '<h2>$_SESSION</h2>';
+    var_dump($_SESSION);
+}
+
+whatIsHappening();
