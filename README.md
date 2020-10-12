@@ -47,27 +47,27 @@ TL;DR: Never use public properties, make getters!
 #### Creating the base classes
 1. Create a class called `Player` in the file `Player.php`.
 1. Add 2 private properties:
-    - `cards` (array)
-    - `lost` (bool, default = false)
+    -[x] `cards` (array)
+    -[x] lost` (bool, default = false)
 1. Add a couple of empty public methods to this class: 
-	- `hit`
-	- `surrender`
-	- `getScore`
-	- `hasLost`
+	-[x] `hit`
+	-[x] `surrender`
+	-[x] `getScore`
+	-[x] `hasLost`
 1. Create a class called `Blackjack` in the file `Blackjack.php`
 1. Add 3 private properties 
-    - `player`
-    - `dealer`
-    - `deck`
+    -[x] `player`
+    -[x] `dealer`
+    -[x] `deck`
 1. Add the following public methods:
-    - `getPlayer`
-    - `getDealer`
+    -[x] `getPlayer`
+    -[x] `getDealer`
 1. In the [constructor](https://www.php.net/manual/en/language.oop5.decon.php) do the following:
-    - Instantiate the Player class twice, insert it into the `player` property and a `dealer` property.
-    - Create a new [`deck` object](code/Deck.php) (code has already been written for you!).
-    - Shuffle the cards with `shuffle` method on deck.
+    -[x] Instantiate the Player class twice, insert it into the `player` property and a `dealer` property.
+    -[x] Create a new [`deck` object](code/Deck.php) (code has already been written for you!).
+    -[x] Shuffle the cards with `shuffle` method on deck.
 1. In the [constructor](https://www.php.net/manual/en/language.oop5.decon.php) of the `Player` class;
-    - Make it require the `Deck` object.
+    -[x] Make it require the `Deck` object.
     - Pass this `Deck` from the `Blackjack` constructor.
     - Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
 1. Save the instance of the enitre `Blackjack`object in the session (you're gonna need it)
