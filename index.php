@@ -23,14 +23,24 @@ function whatIsHappening()
 //require 'Suit.php';
 //require 'Card.php';
 //require 'Deck.php';
-require 'Player.php';echo '<br>';
-require 'Blackjack.php';echo '<br>';
-
-const STAND = 'stand';
-const HIT = 'hit';
-const SURRENDER = 'surrender';
+require 'Player.php';
+echo '<br>';
+require 'Blackjack.php';
+echo '<br>';
 
 //Save the instance of the entire `Blackjack`object in the session
 $_SESSION['blackjack'] = new Blackjack();
 
 whatIsHappening();
+?>
+
+<!--Step 10: Use forms to send to the index.php page what the player's action is. (i.e. hit/stand/surrender)-->
+<!doctype html>
+<body>
+<form action="index.php" method="post">
+    <input type="submit" name="action" value="hit"><br>
+    <input type="submit" name="action" value="stand"><br>
+    <input type="submit" name="action" value="surrender"><br>
+</form>
+</body>
+
