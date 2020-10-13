@@ -27,24 +27,31 @@ class Blackjack
         $deck = new Deck (); //refers to Deck.php
         $deck->shuffle();
 
-        foreach ($deck->getCards() as $card) {
-            echo $card->getUnicodeCharacter(true);
-            echo '<br>';
-        }
-
         //instantiate the Player class twice, insert it into the player property and a dealer property.
         $this->player = new Player($deck); //refers to Player.php
         $this->dealer = new Player($deck);
     }
 
     // add public methods
-    public function getPlayer(): player
+    public function getPlayer()
     {
         return $this->player;
     }
 
-    public function getDealer(): dealer
+    public function getDealer()
     {
         return $this->dealer;
     }
+
+    //Alt+insert+getter+deck (otherwise it doesn't recognise)
+    public function getDeck()
+    {
+        return $this->deck;
+    }
+
+    public function showCards()
+    {
+        $this->player->showCards();
+    }
+
 }

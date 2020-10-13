@@ -68,17 +68,17 @@ TL;DR: Never use public properties, make getters!
     -[x] Shuffle the cards with `shuffle` method on deck.
 1. In the [constructor](https://www.php.net/manual/en/language.oop5.decon.php) of the `Player` class;
     -[x] Make it require the `Deck` object.
-    - Pass this `Deck` from the `Blackjack` constructor.
-    - Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
-1. Save the instance of the enitre `Blackjack`object in the session (you're gonna need it)
-1. Use forms to send to the `index.php` page what the player's action is. (i.e. hit/stand/surrender)
-1. Use the class' methods to react to these actions.
-    - `hit` should add a card to the player. If this brings him above 21, set `lost` property to `true`.
-    - `surrender` should make you surrender the game. (Dealer wins.)
+    -[x] Pass this `Deck` from the `Blackjack` constructor.
+    -[x]  Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
+1. -[x] Save the instance of the enitre `Blackjack`object in the session (you're gonna need it)
+1. -[x] Use forms to send to the `index.php` page what the player's action is. (i.e. hit/stand/surrender)
+1. -[x] Use the class' methods to react to these actions.
+    -[x] `hit` should add a card to the player. If this brings him above 21, set `lost` property to `true`.
+    -[x] `surrender` should make you surrender the game. (Dealer wins.)
         This sets the property `lost` in the `player` instance to true.
-    - `getScore` loops over all the cards and return the total value of that player.
-    - `stand` does not have a method in the player class but will instead call hit on the `dealer` instance.
-    - `hasLost` will return the bool of the lost property.
+     `getScore` loops over all the cards and return the total value of that player.
+    -[x] `stand` does not have a method in the player class but will instead call hit on the `dealer` instance.
+    -[x] `hasLost` will return the bool of the lost property.
     
 #### Take a moment to enjoy the view
 Everything from the player is now done! Job well done!

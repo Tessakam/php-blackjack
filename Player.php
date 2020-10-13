@@ -8,35 +8,63 @@ error_reporting(E_ALL);
 echo 'Hello Player.php';
 
 //create a class called Player
-class Player {
+class Player
+{
 
     //Make it require the Deck object, pass this Deck from the Blackjack constructor.
-    public function __construct($deck) {
-       //Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
-        $this->cards[] = $deck->drawCard();
-        $this->cards[] = $deck->drawCard();
+    public function __construct(Deck $deck)
+    {
+        //Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
+
+        array_push($this->cards, $deck->drawCard());
+        array_push($this->cards, $deck->drawCard());
+        if($this->getScore()>21);
+        $this->lost = true;
     }
 
-//add 2 private properties
+    //add 2 private properties
     private array $cards = [];
     private bool $lost = false;
 
     // add public methods
-    public function hit() : HIT {
-        return $this->hit;
+    public function hit(Deck $deck)
+    {
+
+        $nextCard = array_push($this->cards, $deck->drawCard());
+        array_push($this->cards, $nextCard);
+        //separate [] is not necessary, already created in private!
     }
 
-    public function surrender() : SURRENDER {
-        return $this->surrender;
+    public function surrender()
+    {
+        $this->lost = true;
     }
 
-    public function getScore() {
-
+    public function getScore()
+    {
+    //$score = 0;
+    //for($i = 0;$i <count($this->cards)
     }
 
-    public function hasLost() {
-
+    public function hasLost()
+    {
+        $this->lost = true;
     }
 
-
+    public function showCards()
+    {
+        foreach ($this->cards as $card) {
+            echo $card->getUnicodeCharacter(true);
+            echo '<br>';
+        }
+    }
 }
+
+/* class Dealer extends Player
+public function hit(deck $deck)
+while ($this->getScore() < 15 }
+parent::hit($deck);
+}
+*/
+
+
