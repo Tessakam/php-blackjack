@@ -5,9 +5,6 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-echo 'Hello Blackjack';
-
-
 session_start();
 //session is started if you don't write this line can't use $_Session global variable
 
@@ -21,6 +18,22 @@ function whatIsHappening()
     var_dump($_COOKIE);
     echo '<h2>$_SESSION</h2>';
     var_dump($_SESSION);
+}
+
+//require 'Suit.php';
+//require 'Card.php';
+//require 'Deck.php';
+require 'Player.php';
+require 'Blackjack.php';
+
+const STAND = 'stand';
+const HIT = 'hit';
+const SURRENDER = 'surrender';
+
+//Save the instance of the entire `Blackjack`object in the session
+//isset = Check whether a variable is empty
+if(isset($_SESSION['blackjack'])){
+    $game= $_SESSION['blackjack'];
 }
 
 whatIsHappening();
