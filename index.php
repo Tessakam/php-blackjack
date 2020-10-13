@@ -23,8 +23,8 @@ function whatIsHappening()
 //require 'Suit.php';
 //require 'Card.php';
 //require 'Deck.php';
-require 'Player.php';
-require 'Blackjack.php';
+require 'Player.php';echo '<br>';
+require 'Blackjack.php';echo '<br>';
 
 const STAND = 'stand';
 const HIT = 'hit';

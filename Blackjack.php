@@ -11,7 +11,8 @@ require 'Card.php';
 require 'Deck.php';
 
 //create a class called Blackjack
-class Blackjack {
+class Blackjack
+{
 
 //add 3 private properties
     private $player;
@@ -20,26 +21,30 @@ class Blackjack {
 
     //objects of a class is created using the "new" keyword
     //methods
-    function __construct() {
+    public function __construct()
+    {
+        //create a new deck object (copied from example.php)
+        $deck = new Deck (); //refers to Deck.php
+        $deck->shuffle();
+
+        foreach ($deck->getCards() as $card) {
+            echo $card->getUnicodeCharacter(true);
+            echo '<br>';
+        }
+
         //instantiate the Player class twice, insert it into the player property and a dealer property.
-        $this->player = new Player; //refers to Player.php
-        $this->dealer = new Player;
-        //create a new deck object
-        $this->deck = new Deck; //refers to Deck.php
-        $this->deck = shuffle($cards);
+        $this->player = new Player($deck); //refers to Player.php
+        $this->dealer = new Player($deck);
     }
-
-    //Save the instance of the entire `Blackjack`object in the session
-
-
 
     // add public methods
-    public function getPlayer() {
-
+    public function getPlayer(): player
+    {
+        return $this->player;
     }
 
-    public function getDealer() {
-
+    public function getDealer(): dealer
+    {
+        return $this->dealer;
     }
-
 }
