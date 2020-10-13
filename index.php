@@ -31,9 +31,6 @@ const HIT = 'hit';
 const SURRENDER = 'surrender';
 
 //Save the instance of the entire `Blackjack`object in the session
-//isset = Check whether a variable is empty
-if(isset($_SESSION['blackjack'])){
-    $game= $_SESSION['blackjack'];
-}
+$_SESSION['blackjack'] = new Blackjack();
 
 whatIsHappening();
