@@ -31,6 +31,19 @@ echo '<br>';
 //Save the instance of the entire `Blackjack`object in the session
 $_SESSION['blackjack'] = new Blackjack();
 
+//Step 11: make the form actions work!
+//isset — Determine if a variable is declared and is different than NULL
+//hit should add a card to the player (to the cards property). --> private array $cards = []
+// If this brings him above 21, set the lost property to true
+
+if (isset($_POST['hit'])){
+    for ($i = 0; $i < 2; $i++) {
+        $player = array_shift($cards);
+        echo 'HIT - card for the player';
+}
+
+}
+
 whatIsHappening();
 ?>
 
