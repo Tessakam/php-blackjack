@@ -5,34 +5,33 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-echo 'Hello Player.php';
+echo 'Hello Player!<br/>';
 
 //create a class called Player
 class Player
 {
+    //add 2 private properties
+    private array $cards = [];
+    private bool $lost = false;
 
     //Make it require the Deck object, pass this Deck from the Blackjack constructor.
     public function __construct(Deck $deck)
     {
         //Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
+        array_push($this->cards, $deck->drawCard());
+        array_push($this->cards, $deck->drawCard());
 
-        array_push($this->cards, $deck->drawCard());
-        array_push($this->cards, $deck->drawCard());
-        if($this->getScore()>21);
-        $this->lost = true;
+        if ($this->getScore() > 21) {
+            $this->lost = true;
+        }
     }
-
-    //add 2 private properties
-    private array $cards = [];
-    private bool $lost = false;
 
     // add public methods
     public function hit(Deck $deck)
     {
-
         $nextCard = array_push($this->cards, $deck->drawCard());
         array_push($this->cards, $nextCard);
-        //separate [] is not necessary, already created in private!
+        //separate [] is not necessary, already created in private properties!
     }
 
     public function surrender()
@@ -42,8 +41,8 @@ class Player
 
     public function getScore()
     {
-    //$score = 0;
-    //for($i = 0;$i <count($this->cards)
+        //$score = 0;
+        //for($i = 0;$i <count($this->cards)
     }
 
     public function hasLost()
