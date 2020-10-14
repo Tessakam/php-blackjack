@@ -5,10 +5,7 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-echo 'Hello Blackjack.php';
-require 'Suit.php';
-require 'Card.php';
-require 'Deck.php';
+echo 'Welcome at the Blackjack game!<br/>';
 
 //create a class called Blackjack
 class Blackjack
@@ -24,12 +21,12 @@ class Blackjack
     public function __construct()
     {
         //create a new deck object (copied from example.php)
-        $deck = new Deck (); //refers to Deck.php
-        $deck->shuffle();
+        $this->deck = new Deck(); //refers to Deck.php
+        $this->deck->shuffle();
 
         //instantiate the Player class twice, insert it into the player property and a dealer property.
-        $this->player = new Player($deck); //refers to Player.php
-        $this->dealer = new Player($deck);
+        $this->player = new Player($this->deck); //$this->deck ipv $deck!!!
+        $this->dealer = new Player($this->deck);
     }
 
     // add public methods

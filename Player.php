@@ -27,9 +27,9 @@ class Player
     }
 
     // add public methods
-    public function hit(Deck $deck)
+    public function hit($deck)
     {
-        $nextCard = array_push($this->cards, $deck->drawCard());
+        $nextCard = $deck->drawCard();
         array_push($this->cards, $nextCard);
         //separate [] is not necessary, already created in private properties!
     }

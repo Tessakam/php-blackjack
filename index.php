@@ -20,15 +20,16 @@ function whatIsHappening()
     echo '<h2>$_COOKIE</h2>';
     var_dump($_COOKIE);
     echo '<h2>$_SESSION</h2>';
-    var_dump($_SESSION);
+    var_dump($_SESSION['blackjack']);
 }
 
 session_start();
 //session is started if you don't write this line can't use $_Session global variable
 
 //Save the instance of the entire `Blackjack`object in the session
-$_SESSION['blackjack'] = new Blackjack();
-
+if(!isset($_SESSION['blackjack'])){
+    $_SESSION['blackjack'] = new Blackjack();
+}
 //create a variable
 $game = new Blackjack();
 $player = $game->getPlayer(); //otherwise undefined
@@ -54,7 +55,8 @@ elseif ($_POST['action'] === 'surrender') {
 }
 
 $game->showCards();
-whatIsHappening();
+//whatIsHappening();
+//var_dump($game);
 ?>
 
 <!--Step 10: Use forms to send to the index.php page what the player's action is. (i.e. hit/stand/surrender)-->
