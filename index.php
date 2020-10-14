@@ -11,16 +11,17 @@ require 'Deck.php';
 require 'Player.php';
 require 'Blackjack.php';
 
-session_start();
+session_start(); // put the session behind the require
 
 //Save the instance of the entire `Blackjack`object in the session
-if (!isset($_SESSION['blackjack'])) {
+if (!isset($_SESSION['blackjack'])) { // if our session Blackjack is not set, then a new game starts
     $_SESSION['blackjack'] = new Blackjack();
 }
 //create a variable
 $game = new Blackjack();
 
 $player = $game->getPlayer(); //otherwise undefined
+$dealer = $game->getDealer();
 $deck = $game->getDeck();
 
 //Step 11: make the form actions work!
@@ -29,21 +30,74 @@ $deck = $game->getDeck();
 if (!isset($_POST['action'])) {
     echo "Game started!<br/>";
 
-} elseif ($_POST['action'] === 'hit') {
-    $player->hit($deck);
-    echo "<br/>Hit for player!";
+}
+if ($_POST['action'] === 'hit') {
+    $player->hit($game->getDeck());
+    //echo "<br/>Hit for player!";
+    echo $player->getScore();
+    echo "<br>";
+    if ($player->hasLost()) {
+        echo "you lose";
+    }
+}
+if ($_POST['action'] === 'stand') {
+    $dealer->hit($game->getDeck());
+    echo $dealer->getScore();
+    echo "<br>";
 
-} elseif ($_POST['action'] === 'stand') {
-    echo "<br/>Stand for player!<br/>";
+    if ($dealer->hasLost()) {
+        echo "dealer lost! <br/>";
 
-} elseif ($_POST['action'] === 'surrender') {
+    } else {
+        if ($dealer->getScore() >= $player->getScore()) {
+            echo "dealer wins <br/>";
+        } else {
+            echo "player wins <br/>";
+        }
+    }
+}
+if ($_POST['action'] === 'surrender') {
     echo "<br/>Surrender for player so dealer wins!<br/>";
     $player->hasLost();
+
+}
+if ($_POST['action'] === 'restart') {
+    session_destroy();
+    //redirect to the same page = force to start a new page
+    header("location:index.php"); // !!code below will still be executed!! solution, add exit
+    exit();
+    /*in HTML:
+    <?php if(!$player->haslost() && !$dealer()->hasLost():?>
+    <?php else : ?>
+    <input type="submit" name="action" value="restart">
+    */
 }
 ?>
-<!-- Step 10: Use forms to send to the index.php page what the player's action is. (i.e. hit/stand/surrender)-->
+<!-- Show result-->
 <!doctype html>
 <body>
+<div>
+    <br>
+    Your cards:
+    <span style="font-size: 50px;"</span> <!--normally you make a CSS page!-->
+    <?php
+    foreach ($player->showCards() as $card) {
+        echo $card->getUnicodeCharacter(true);
+    }
+    ?>
+</div>
+
+<div>
+    <br>
+    Dealer cards:
+    <span style="font-size: 50px;"</span> <!--normally you make a CSS page!-->
+    <?php
+    foreach ($dealer->showCards() as $card) {
+        echo $card->getUnicodeCharacter(true);
+    }
+    ?>
+</div>
+<!-- Step 10: Use action forms (i.e. hit/stand/surrender)-->
 <form action="index.php" method="post">
     <input type="submit" name="action" value="hit">
     <input type="submit" name="action" value="stand">
@@ -52,7 +106,6 @@ if (!isset($_POST['action'])) {
 </body>
 
 <?php
-$game->showCards();
 
 function whatIsHappening()
 {
@@ -65,9 +118,5 @@ function whatIsHappening()
     echo '<h2>$_SESSION</h2>';
     var_dump($_SESSION['blackjack']);
 }
-
-whatIsHappening();
+//whatIsHappening();
 ?>
-
-
-

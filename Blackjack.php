@@ -13,7 +13,7 @@ class Blackjack
 
 //add 3 private properties
     private Player $player; // add type hinting
-    private $dealer;
+    private Dealer $dealer;
     private Deck $deck;
 
     //objects of a class is created using the "new" keyword
@@ -23,14 +23,14 @@ class Blackjack
         //create a new deck object (copied from example.php)
         $deck = new Deck(); //refers to Deck.php
         $deck->shuffle();
-        $this->deck=$deck; ////$this->deck ipv $deck!!!
+        $this->deck=$deck; //$this->deck ipv $deck!!!
 
         //instantiate the Player class twice, insert it into the player property and a dealer property.
-        $this->player = new Player($this->deck);
-        $this->dealer = new Player($this->deck);
+        $this->player = new Player($this->deck); // pass the deck to the player
+        $this->dealer = new Dealer($this->deck);
     }
 
-    // add public methods
+    // add public methods with alt+insert+getter
     public function getPlayer()
     {
         return $this->player;

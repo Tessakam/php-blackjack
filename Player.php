@@ -14,12 +14,15 @@ class Player
     private array $cards = [];
     private bool $lost = false;
 
+    /* @var card[] */
+
     //Make it require the Deck object, pass this Deck from the Blackjack constructor.
     public function __construct(Deck $deck)
     {
         //Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
         array_push($this->cards, $deck->drawCard());
         array_push($this->cards, $deck->drawCard());
+        //Also possible: array_push($this->cards, $deck->drawCard(), $deck->drawCard());
 
         if ($this->getScore() > 21) {
             $this->lost = true;
@@ -27,11 +30,15 @@ class Player
     }
 
     // add public methods
-    public function hit($deck)
+    public function hit(Deck $deck)
     {
         $nextCard = $deck->drawCard();
         array_push($this->cards, $nextCard);
         //separate [] is not necessary, already created in private properties!
+
+        if ($this->getScore() > 21) {
+            $this->lost = true;
+        }
     }
 
     public function surrender()
@@ -42,8 +49,10 @@ class Player
     public function getScore()
     {
         $score = 0;
-        for($i = 0;$i <count($this->cards)
-            $score+=$card->getValue();
+        foreach ($this->cards as $card) {
+            $score += $card->getValue();
+        } //tip @var card[] shows which values are available
+        return $score;
     }
 
     public function hasLost()
@@ -55,16 +64,19 @@ class Player
     {
         foreach ($this->cards as $card) {
             echo $card->getUnicodeCharacter(true);
-            echo '<br>';
         }
     }
 }
 
-/* class Dealer extends Player
-public function hit(deck $deck)
-while ($this->getScore() < 15 }
-parent::hit($deck);
+class Dealer extends Player
+{
+    public function hit(Deck $deck)
+    {
+        while ($this->getScore() < 15)
+            parent::hit($deck); //using the old hit function
+    }
 }
-*/
+
+
 
 
