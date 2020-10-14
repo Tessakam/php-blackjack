@@ -55,8 +55,8 @@ elseif ($_POST['action'] === 'surrender') {
 }
 
 $game->showCards();
-//whatIsHappening();
-//var_dump($game);
+whatIsHappening();
+
 ?>
 
 <!--Step 10: Use forms to send to the index.php page what the player's action is. (i.e. hit/stand/surrender)-->

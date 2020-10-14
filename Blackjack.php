@@ -12,9 +12,9 @@ class Blackjack
 {
 
 //add 3 private properties
-    private $player;
+    private Player $player;
     private $dealer;
-    private $deck;
+    private Deck $deck;
 
     //objects of a class is created using the "new" keyword
     //methods
