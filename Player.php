@@ -41,8 +41,9 @@ class Player
 
     public function getScore()
     {
-        //$score = 0;
-        //for($i = 0;$i <count($this->cards)
+        $score = 0;
+        for($i = 0;$i <count($this->cards)
+            $score+=$card->getValue();
     }
 
     public function hasLost()

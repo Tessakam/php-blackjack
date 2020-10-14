@@ -12,7 +12,7 @@ class Blackjack
 {
 
 //add 3 private properties
-    private Player $player;
+    private Player $player; // add type hinting
     private $dealer;
     private Deck $deck;
 
@@ -21,11 +21,12 @@ class Blackjack
     public function __construct()
     {
         //create a new deck object (copied from example.php)
-        $this->deck = new Deck(); //refers to Deck.php
-        $this->deck->shuffle();
+        $deck = new Deck(); //refers to Deck.php
+        $deck->shuffle();
+        $this->deck=$deck; ////$this->deck ipv $deck!!!
 
         //instantiate the Player class twice, insert it into the player property and a dealer property.
-        $this->player = new Player($this->deck); //$this->deck ipv $deck!!!
+        $this->player = new Player($this->deck);
         $this->dealer = new Player($this->deck);
     }
 
